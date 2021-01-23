@@ -1,5 +1,6 @@
-# Created by https://www.toptal.com/developers/gitignore/api/macos,linux,windows,node
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,linux,windows,node
+
+# Created by https://www.toptal.com/developers/gitignore/api/node,macos,linux,windows,vagrant
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,macos,linux,windows,vagrant
 
 ### Linux ###
 *~
@@ -101,6 +102,9 @@ typings/
 # Optional eslint cache
 .eslintcache
 
+# Optional stylelint cache
+.stylelintcache
+
 # Microbundle cache
 .rpt2_cache/
 .rts2_cache_cjs/
@@ -156,6 +160,16 @@ dist
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
+### Vagrant ###
+# General
+.vagrant/
+
+# Log files (if you are creating logs in debug mode, uncomment this)
+# *.log
+
+### Vagrant Patch ###
+*.box
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -182,4 +196,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/macos,linux,windows,node
+# End of https://www.toptal.com/developers/gitignore/api/node,macos,linux,windows,vagrant
