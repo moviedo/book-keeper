@@ -18,6 +18,9 @@ export default class User extends BaseModel {
   @column()
   public rememberMeToken?: string
 
+  @column({ serializeAs: null })
+  public emailVerified: boolean
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
