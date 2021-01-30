@@ -1,0 +1,25 @@
+@layout('layouts/auth')
+
+@section('content')
+  <form action="{{ route('login.create') }}" method="POST">
+    <div>
+      <label for="username">Email</label>
+      <input id="username" type="text" name="username" value="{{ flashMessages.get('email') || '' }}" />
+      <p>{{ flashMessages.get('auth.errors.uid') || '' }}</p>
+    </div>
+
+    <div>
+      <label for="password">Password</label>
+      <input id="password" type="password" name="password" />
+      <p>{{ flashMessages.get('auth.errors.password') || '' }}</p>
+    </div>
+
+    <div>
+      <label>
+        <input id="remember_me" name="remember_me" type="checkbox" /> Remember me
+      </label>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+@endsection

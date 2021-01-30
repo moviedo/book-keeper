@@ -20,4 +20,8 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.on('/').render('welcome')
+Route.group(() => {
+  Route.get('/', 'LoginController.index').as('index')
+})
+  .prefix('/login')
+  .as('login')
