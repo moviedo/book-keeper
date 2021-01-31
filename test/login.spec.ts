@@ -35,6 +35,14 @@ test.group('Welcome', () => {
     })
   })
 
+  test('ensure login submission works', async (assert) => {
+    assert.fail()
+  })
+
+  test('ensure login submission with TOTP works', async (assert) => {
+    assert.fail()
+  })
+
   test('ensure user password gets hashed during save', async (assert) => {
     const user = new User()
     user.username = 'virk1'
