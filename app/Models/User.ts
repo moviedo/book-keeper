@@ -1,6 +1,8 @@
 import { DateTime } from 'luxon'
+import { v4 } from 'uuid'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
+import Env from '@ioc:Adonis/Core/Env'
+import { column, beforeCreate, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -31,6 +33,14 @@ export default class User extends BaseModel {
   public static async hashPassword(user: User) {
     if (user.$dirty.password) {
       user.password = await Hash.make(user.password)
+    }
+  }
+
+  @beforeCreate()
+  public static async generateId(user: User) {
+    const connnection = Env.get('DB_CONNECTION', 'sqlite')
+    if (connnection === 'sqlite') {
+      user.id = v4()
     }
   }
 }
