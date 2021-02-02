@@ -1,22 +1,58 @@
 @layout('layouts/auth')
 
 @section('content')
-  <form action="{{ route('login.create') }}" method="POST">
+  {{ inspect(flashMessages.all()) }}
+
+  <form action="{{ route('login.submit') }}" method="POST">
     <div>
-      <label for="username">Email</label>
-      <input id="username" type="text" name="username" value="{{ flashMessages.get('email') || '' }}" />
-      <p>{{ flashMessages.get('auth.errors.uid') || '' }}</p>
+      <label for="username">Username</label>
+      <input
+        id="username"
+        type="text"
+        name="username"
+        autocomplete="off"
+        value="{{ flashMessages.get('username') || '' }}"
+      />
+
+      @set('errorsUsername', flashMessages.get('errors.username'))
+      @if(errorsUsername)
+        <p>{{ errorsUsername }}</p>
+      @endif
+
+      @set('invalid', flashMessages.get('invalid'))
+      @if(invalid)
+        <p>{{ invalid }}</p>
+      @endif
     </div>
 
     <div>
       <label for="password">Password</label>
-      <input id="password" type="password" name="password" />
-      <p>{{ flashMessages.get('auth.errors.password') || '' }}</p>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        autocomplete="off"
+      />
+
+      @set('errorsPassword', flashMessages.get('errors.password'))
+      @if(errorsPassword)
+        <p>{{ errorsPassword }}</p>
+      @endif
     </div>
 
     <div>
       <label>
-        <input id="remember_me" name="remember_me" type="checkbox" /> Remember me
+        <input
+          id="remember_me"
+          name="remember_me"
+          type="checkbox"
+          value="{{ flashMessages.get('rememberMe') || false }}"
+        /> Remember me
+
+        @set('errorsRememberMe', flashMessages.get('errors.rememberMe'))
+        @if(errorsRememberMe)
+          <p>{{ errorsRememberMe }}</p>
+        @endif
       </label>
     </div>
 
