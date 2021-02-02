@@ -64,6 +64,7 @@ test.group('Login submission', (group) => {
     user.username = username
     user.email = faker.internet.email()
     user.password = password
+    user.emailVerified = true
     await user.save()
 
     browser = await puppeteer.launch()
@@ -125,8 +126,14 @@ test.group('Login submission', (group) => {
     assert.equal(errorMsg, messages.invalid)
   })
 
-  test.skip('ensure login works with TOTP', async (assert) => {
-    assert.fail()
+  test('ensure login works with username/pw', async (assert) => {
+    await page.goto(url)
+    await page.type('#username', username)
+    await page.type('#password', password)
+    await page.click('[type="submit"]')
+    await page.waitForNavigation()
+
+    assert.equal(page.url(), `${BASE_URL}${Route.makeUrl('dashboard')}`)
   })
 
   test.skip('ensure login works with TOTP', async (assert) => {
