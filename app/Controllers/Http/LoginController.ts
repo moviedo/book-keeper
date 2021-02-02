@@ -12,7 +12,7 @@ export default class LoginController {
       const { username, password, rememberMe = false } = await request.validate(LoginValidator)
       await auth.attempt(username, password, rememberMe)
 
-      response.redirect(Route.makeUrl('home') || '/')
+      response.redirect(Route.makeUrl('dashboard') || '/')
     } catch (error) {
       if (error.code === 'E_INVALID_AUTH_UID' || error.code === 'E_INVALID_AUTH_PASSWORD') {
         // unable to find user using account
