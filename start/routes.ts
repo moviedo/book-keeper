@@ -25,6 +25,7 @@ Route.get('/dashboard', 'DashboardController.index').as('dashboard')
 
 Route.group(() => {
   Route.get('/', 'LoginController.index').as('index')
+  Route.post('/', 'LoginController.submit').as('submit')
 })
   .prefix('/login')
   .as('login')
