@@ -1,8 +1,6 @@
-@layout('layouts/auth')
+@layout('layouts/base')
 
-@section('content')
-  {{ inspect(flashMessages.all()) }}
-
+@section('main')
   <form action="{{ route('login.submit') }}" method="POST">
     <div>
       <label for="username">Username</label>
