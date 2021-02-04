@@ -84,6 +84,7 @@ test.group('Login submission', (group) => {
 
   test('ensure login fails with missing username', async (assert) => {
     await page.goto(url)
+    await page.$eval('#username', (input) => input.removeAttribute('required'))
     await page.type('#password', password)
     await page.click('[type="submit"]')
     await page.waitForNavigation()
@@ -97,6 +98,7 @@ test.group('Login submission', (group) => {
 
   test('ensure login fails with missing password', async (assert) => {
     await page.goto(url)
+    await page.$eval('#password', (input) => input.removeAttribute('required'))
     await page.type('#username', username)
     await page.click('[type="submit"]')
     await page.waitForNavigation()
