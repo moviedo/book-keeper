@@ -20,8 +20,8 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.on('/').render('welcome').as('home')
-Route.on('/dashboard').render('welcome').as('dashboard')
+Route.get('/', 'HomeController.index').as('home')
+Route.get('/dashboard', 'DashboardController.index').as('dashboard')
 
 Route.group(() => {
   Route.get('/', 'LoginController.index').as('index')
