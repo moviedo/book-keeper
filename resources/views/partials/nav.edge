@@ -1,9 +1,14 @@
 <ul>
-  <li>
-    @if(auth.isLoggedIn)
+  @if(auth.isLoggedIn)
+    <li>
       Welcome back {{ auth.user.username }}
-    @else
+    </li>
+    <li>
+      <a href="{{ route('logout') }}">Logout</a>
+    </li>
+  @else
+    <li>
       <a href="{{ route('login.index') }}">Login</a>
-    @endif
-  </li>
+    </li>
+  @endif
 </ul>
