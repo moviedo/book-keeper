@@ -20,7 +20,10 @@ export default class User extends BaseModel {
   @column({ serializeAs: null })
   public rememberMeToken?: string
 
-  @column({ serializeAs: null })
+  @column({
+    serializeAs: null,
+    consume: (value: number) => Boolean(value),
+  })
   public emailVerified: boolean
 
   @column.dateTime({ autoCreate: true })

@@ -1,6 +1,8 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import LoginValidator, { messages } from 'App/Validators/LoginValidator'
 import Route from '@ioc:Adonis/Core/Route'
+
+import LoginValidator, { messages } from 'App/Validators/LoginValidator'
+import VerificationException from 'App/Exceptions/VerificationException'
 
 export default class LoginController {
   public async index({ view }: HttpContextContract) {
@@ -10,7 +12,15 @@ export default class LoginController {
   public async submit({ auth, request, response, session }: HttpContextContract) {
     try {
       const { username, password, rememberMe = false } = await request.validate(LoginValidator)
-      await auth.attempt(username, password, rememberMe)
+      const user = await auth.verifyCredentials(username, password)
+
+      if (user?.emailVerified === false) {
+        throw new VerificationException(true, {
+          inactive: messages.inactive,
+        })
+      }
+
+      await auth.login(user, rememberMe)
 
       response.redirect(Route.makeUrl('dashboard') || '/')
     } catch (error) {

@@ -18,6 +18,11 @@
         <p>{{ errorsUsername }}</p>
       @endif
 
+      @set('inactive', flashMessages.get('errors.inactive'))
+      @if(inactive)
+        <p>{{ inactive }}</p>
+      @endif
+
       @set('invalid', flashMessages.get('invalid'))
       @if(invalid)
         <p>{{ invalid }}</p>

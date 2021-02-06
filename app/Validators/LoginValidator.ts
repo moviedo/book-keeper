@@ -3,6 +3,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export const messages = {
   'invalid': 'Incorrect username or password.',
+  'inactive': 'This account is inactive. Please verify your email.',
   'username.required': 'Username is required',
   'password.required': 'Password is required',
 }
