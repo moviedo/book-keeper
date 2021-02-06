@@ -128,6 +128,31 @@ test.group('Login submission', (group) => {
     assert.equal(errorMsg, messages.invalid)
   })
 
+  test('ensure login fails when email not verified', async (assert) => {
+    const user = new User()
+    const password = faker.internet.password()
+    user.username = faker.internet.userName()
+    user.email = faker.internet.email()
+    user.password = password
+    user.emailVerified = false
+    await user.save()
+
+    await page.goto(url)
+    await page.type('#username', user.username)
+    await page.type('#password', password)
+    await page.click('[type="submit"]')
+    await page.waitForNavigation()
+
+    const inputValue = await page.$eval('#username', (input) => input.value)
+    assert.equal(inputValue, user.username)
+
+    const pwValue = await page.$eval('#password', (input) => input.value)
+    assert.isEmpty(pwValue)
+
+    const errorMsg = await page.$eval('p', (p) => p.textContent)
+    assert.equal(errorMsg, messages.inactive)
+  })
+
   test('ensure login works with username/pw', async (assert) => {
     await page.goto(url)
     await page.type('#username', username)
