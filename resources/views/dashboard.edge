@@ -1,5 +1,18 @@
 @layout('layouts/base')
 
+@section('head')
+  @if(application.env.get('NODE_ENV') === 'production')
+    <link rel="stylesheet" href="{{ mix('scripts/app.css') }}">
+  @endif
+@endsection
+
 @section('main')
-On dashboard page
+<noscript>
+  <strong>We're sorry but Dashboard doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+</noscript>
+<div id="app"></div>
+
+<script type="text/javascript" src="{{ mix('scripts/manifest.js') }}"></script>
+<script type="text/javascript" src="{{ mix('scripts/vendor.js') }}"></script>
+<script type="text/javascript" src="{{ mix('scripts/app.js') }}"></script>
 @endsection
