@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node ace build --production",
+    "build": "npm run build:serve && npm run build:client",
+    "build:server": "node ace build --production",
+    "build:client": "node ace mix:build --production",
     "start": "node server.js",
     "dev": "npm run dev:server & npm run dev:client",
     "dev:server": "node ace serve --watch",
