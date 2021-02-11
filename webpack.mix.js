@@ -12,3 +12,11 @@ mix
   })
   .extract()
   .sourceMaps();
+
+mix
+  .css('resources/assets/app.css', 'styles')
+  .options({
+    postCss: [
+      require("tailwindcss"),
+    ]
+  });
