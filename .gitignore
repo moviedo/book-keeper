@@ -4,6 +4,7 @@
 # laravel-mix generated files
 /public/images
 /public/scripts
+/public/styles
 /public/mix-manifest.json
 /public/hot
 
