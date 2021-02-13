@@ -20,3 +20,12 @@ mix
       require("tailwindcss"),
     ]
   });
+
+const BASE_URL = `http://${process.env.HOST}:${process.env.PORT}`
+mix.browserSync({
+  proxy: BASE_URL,
+  files: [
+    'public/**/*',
+    'resources/views/**/*'
+  ]
+});
