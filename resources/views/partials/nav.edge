@@ -1,14 +1,28 @@
-<ul>
-  @if(auth.isLoggedIn)
-    <li>
-      Welcome back {{ auth.user.username }}
-    </li>
-    <li>
-      <a href="{{ route('logout') }}">Logout</a>
-    </li>
-  @else
-    <li>
-      <a href="{{ route('login.index') }}">Login</a>
-    </li>
-  @endif
-</ul>
+<nav id="nav">
+  <a href="{{ route('home') }}" class="pl-6">Book Keeper</a>
+
+  <button id="toggle" class="px-4 cursor-pointer md:hidden" type="button" aria-label="Toggle navigation">
+    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+
+  <ul class="hidden md:block">
+    @if(auth.isLoggedIn)
+      <li>
+        Welcome back {{ auth.user.username }}
+      </li>
+      <li>
+        <a class="p-4" href="{{ route('logout') }}">Logout</a>
+      </li>
+    @else
+      <li>
+        <a class="p-4" href="{{ route('login.index') }}">Login</a>
+      </li>
+    @endif
+  </ul>
+</nav>
+
+<script>
+
+</script>
