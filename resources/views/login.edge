@@ -1,66 +1,81 @@
 @layout('layouts/base')
 
-@section('main')
-  <form action="{{ route('login.submit') }}" method="POST">
-    <div>
-      <label for="username">Username</label>
-      <input
-        id="username"
-        type="text"
-        name="username"
-        autocomplete="off"
-        required="required"
-        value="{{ flashMessages.get('username') || '' }}"
-      />
+@section('head')
+<link rel="stylesheet" href="{{ mix('styles/login.css') }}">
+@endsection
 
+@section('main')
+  <form class="flex flex-col justify-center h-screen pt-16" action="{{ route('login.submit') }}" method="POST">
+
+    @if(flashMessages.has('errors') || flashMessages.has('invalid'))
+    <section class="errors">
       @set('errorsUsername', flashMessages.get('errors.username'))
       @if(errorsUsername)
-        <p>{{ errorsUsername }}</p>
+        <p class="form-error">{{ errorsUsername }}</p>
       @endif
 
       @set('inactive', flashMessages.get('errors.inactive'))
       @if(inactive)
-        <p>{{ inactive }}</p>
+        <p class="form-error">{{ inactive }}</p>
       @endif
 
       @set('invalid', flashMessages.get('invalid'))
       @if(invalid)
-        <p>{{ invalid }}</p>
+        <p class="form-error">{{ invalid }}</p>
       @endif
-    </div>
-
-    <div>
-      <label for="password">Password</label>
-      <input
-        id="password"
-        type="password"
-        name="password"
-        required="required"
-        autocomplete="off"
-      />
 
       @set('errorsPassword', flashMessages.get('errors.password'))
       @if(errorsPassword)
-        <p>{{ errorsPassword }}</p>
+        <p class="form-error">{{ errorsPassword }}</p>
       @endif
-    </div>
 
-    <div>
-      <label>
+      @set('errorsRememberMe', flashMessages.get('errors.rememberMe'))
+      @if(errorsRememberMe)
+        <p class="form-error">{{ errorsRememberMe }}</p>
+      @endif
+    </section>
+    @endif
+
+    <section class="inputs">
+      <fieldset class="form-fieldset">
+        <label class="form-label" for="username">Username</label>
         <input
-          id="remember_me"
-          name="remember_me"
-          type="checkbox"
-          value="{{ flashMessages.get('rememberMe') || false }}"
-        /> Remember me
+          id="username"
+          class="form-text-input"
+          type="text"
+          name="username"
+          autocomplete="off"
+          required="required"
+          value="{{ flashMessages.get('username') || '' }}"
+        />
+      </fieldset>
 
-        @set('errorsRememberMe', flashMessages.get('errors.rememberMe'))
-        @if(errorsRememberMe)
-          <p>{{ errorsRememberMe }}</p>
-        @endif
-      </label>
-    </div>
+      <fieldset class="form-fieldset">
+        <label class="form-label" for="password">Password</label>
+        <input
+          id="password"
+          class="form-text-input"
+          type="password"
+          name="password"
 
-    <button type="submit">Submit</button>
+          autocomplete="off"
+        />
+      </fieldset>
+
+      <div class="form-fieldset">
+        <label>
+          <input
+            id="remember_me"
+            name="remember_me"
+            type="checkbox"
+            value="{{ flashMessages.get('rememberMe') || false }}"
+          /> Remember me
+        </label>
+      </div>
+
+      <div class="pb-3.5">
+        <button class="form-submit" type="submit">Submit</button>
+      </div>
+    </section>
   </form>
 @endsection
