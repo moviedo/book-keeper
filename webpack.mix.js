@@ -15,6 +15,7 @@ mix
 
 mix
   .css('resources/assets/app.css', 'styles')
+  .sass('resources/views/login.scss', 'styles')
   .options({
     postCss: [
       require("tailwindcss"),

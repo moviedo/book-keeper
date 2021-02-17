@@ -1,0 +1,33 @@
+.errors,
+.inputs {
+  @apply ml-4 mr-4 md:mx-auto;
+  @apply bg-red-200 rounded-lg p-2 md:w-96;
+}
+
+.errors {
+  @apply mb-4;
+}
+
+.inputs {
+  @apply p-4 bg-gray-200;
+}
+
+.form-fieldset {
+  @apply pt-2.5 pb-2.5;
+}
+
+.form-label {
+  @apply block w-full font-bold pb-1;
+}
+
+.form-text-input {
+  @apply block w-full;
+}
+
+.form-error {
+  @apply font-bold text-black text-center pt-2.5 pb-2.5;
+}
+
+.form-submit {
+  @apply rounded-md py-2 px-6 bg-green-500 text-white font-medium w-full;
+}
